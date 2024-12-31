@@ -1,7 +1,20 @@
 import express from 'express';
+import cors from 'cors';
 import { auth } from '../config/firebase';
 
 const router = express.Router();
+
+// CORS options
+const corsOptions = {
+  origin: '*', // Tüm originlere izin ver
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true,
+  maxAge: 86400 // 24 saat
+};
+
+// CORS middleware'ini uygula
+router.use(cors(corsOptions));
 
 // Verify token endpoint (optional - for token validation).
 router.post('/verify-token', async (req, res) => {
@@ -13,9 +26,9 @@ router.post('/verify-token', async (req, res) => {
     }
 
     const decodedToken = await auth.verifyIdToken(token);
-    res.json({ user: decodedToken });
+    return res.json({ user: decodedToken });
   } catch (error) {
-    res.status(401).json({ message: 'Invalid token' });
+    return res.status(401).json({ message: 'Invalid token' });
   }
 });
 

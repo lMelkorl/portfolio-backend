@@ -3,6 +3,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import projectRoutes from './routes/projects';
 import addOrderToProjects from './migrations/addOrderToProjects';
+import authRouter from './routes/auth';
 
 dotenv.config();
 
@@ -19,6 +20,7 @@ app.use(express.json());
 
 // Routes
 app.use('/api/projects', projectRoutes);
+app.use('/auth', authRouter);
 
 // Error handling
 app.use((err: Error, req: express.Request, res: express.Response, next: express.NextFunction) => {
