@@ -15,15 +15,15 @@ const allowedOrigins = [
   'https://portfolio-backend-rg5l.onrender.com'
 ];
 
+// Pre-flight istekleri için OPTIONS metodunu etkinleştir
+app.options('*', cors());
+
 app.use(cors({
-  origin: function(origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('CORS not allowed'));
-    }
-  },
-  credentials: true
+  origin: allowedOrigins,  // Direkt array olarak kullan
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true,
+  optionsSuccessStatus: 200
 }));
 
 // Routes
