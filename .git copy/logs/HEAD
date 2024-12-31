@@ -1,0 +1,14 @@
+0000000000000000000000000000000000000000 a97883cb6791f5dde1e2165e50b913a0dd0f9892 Melkor <melkor@Melkor-MacBook-Pro.local> 1735572999 +0300	commit (initial): First Commit
+a97883cb6791f5dde1e2165e50b913a0dd0f9892 989c3d382d85918b14b477328f79c6b0dcacd0ff Melkor <melkor@Melkor-MacBook-Pro.local> 1735573568 +0300	commit: second update
+989c3d382d85918b14b477328f79c6b0dcacd0ff 0bb2d6bb4515ca8a067c04468b38f3ed13e69d6e Melkor <melkor@Melkor-MacBook-Pro.local> 1735575632 +0300	commit: second update
+0bb2d6bb4515ca8a067c04468b38f3ed13e69d6e 3b9e0ab08e19d38b8120084c63d6295bfd168800 Melkor <melkor@Melkor-MacBook-Pro.local> 1735575869 +0300	commit: second update
+3b9e0ab08e19d38b8120084c63d6295bfd168800 1f0befa520aa8427e78014770c726463dd79f3df Melkor <melkor@Melkor-MacBook-Pro.local> 1735575946 +0300	commit: third update
+1f0befa520aa8427e78014770c726463dd79f3df 374d584b6302f76cbf702ef0f1e2cc33a5db7ad3 Melkor <melkor@Melkor-MacBook-Pro.local> 1735576040 +0300	commit: third update
+374d584b6302f76cbf702ef0f1e2cc33a5db7ad3 f5f25bff48294d1a04a5eba7d0dce9bf02987a7d Melkor <melkor@Melkor-MacBook-Pro.local> 1735576150 +0300	commit: third update
+f5f25bff48294d1a04a5eba7d0dce9bf02987a7d 2d3e85044b02c03be6a1cd5c26c033db5f7886c7 Melkor <melkor@Melkor-MacBook-Pro.local> 1735576240 +0300	commit: third update
+2d3e85044b02c03be6a1cd5c26c033db5f7886c7 b796357191eab84da23dec4868aadca44700dd51 Melkor <melkor@Melkor-MacBook-Pro.local> 1735576303 +0300	commit: third update
+b796357191eab84da23dec4868aadca44700dd51 d7daf909b1c8f844e15a868c5ae2c4047802bece Melkor <melkor@Melkor-MacBook-Pro.local> 1735576610 +0300	commit: deneme
+d7daf909b1c8f844e15a868c5ae2c4047802bece c546a34f772ee31355b7f4a5e5f5abb46f983c90 Melkor <melkor@Melkor-MacBook-Pro.local> 1735576889 +0300	commit: third update
+c546a34f772ee31355b7f4a5e5f5abb46f983c90 0fa79dad6f8399e0fc1603d50e911b7d842ee9d7 Melkor <melkor@Melkor-MacBook-Pro.local> 1735577022 +0300	commit: refactor: move firebase config to env variables
+0fa79dad6f8399e0fc1603d50e911b7d842ee9d7 9f2b18d51df735441653e5dfbba9b5050499e998 Melkor <melkor@Melkor-MacBook-Pro.local> 1735577351 +0300	commit: first commit
+9f2b18d51df735441653e5dfbba9b5050499e998 cd4084af1a354b867e16442cbf6bf98eef2c0d18 Melkor <melkor@192.168.1.132> 1735676965 +0300	commit: first commit
