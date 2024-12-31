@@ -13,9 +13,9 @@ router.post('/verify-token', async (req, res) => {
     }
 
     const decodedToken = await auth.verifyIdToken(token);
-    res.json({ user: decodedToken });
+    return res.json({ user: decodedToken });
   } catch (error) {
-    res.status(401).json({ message: 'Invalid token' });
+    return res.status(401).json({ message: 'Invalid token' });
   }
 });
 
