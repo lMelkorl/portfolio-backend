@@ -8,7 +8,7 @@ export interface Project {
   technologies: string[];
   demoUrl?: string;
   githubUrl?: string;
-  order?: number;
-  createdAt?: Date;
-  updatedAt?: Date;
+  order: number;
+  createdAt?: string;
+  updatedAt?: string;
 } 
