@@ -13,7 +13,9 @@ const app = express();
 const allowedOrigins = [
   'http://localhost:5173',
   'https://melkor-projects.onrender.com',
-  'https://melkor-projects.onrender.com/'
+  'https://melkor-projects.onrender.com/',
+  'https://portfolio-backend-rg5l.onrender.com',
+  'https://api.allorigins.win'
 ];
 
 app.use(cors({
@@ -22,13 +24,29 @@ app.use(cors({
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
+      console.log('Blocked origin:', origin); // Debug için
       callback(new Error('CORS policy violation'));
     }
   },
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials: true
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
+  allowedHeaders: [
+    'Content-Type', 
+    'Authorization', 
+    'X-Requested-With',
+    'Accept',
+    'Origin',
+    'Access-Control-Request-Method',
+    'Access-Control-Request-Headers'
+  ],
+  exposedHeaders: ['Content-Range', 'X-Content-Range'],
+  credentials: true,
+  preflightContinue: false,
+  optionsSuccessStatus: 204,
+  maxAge: 86400 // 24 saat
 }));
+
+// CORS Preflight için OPTIONS handler
+app.options('*', cors());
 
 app.use(express.json());
 
