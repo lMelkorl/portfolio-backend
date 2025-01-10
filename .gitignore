@@ -1,0 +1,25 @@
+# Dependencies
+node_modules/
+dist/
+
+# Environment variables
+.env
+.env.local
+.env.development
+.env.production
+
+# Firebase
+src/config/serviceAccountKey.ts
+
+# Logs
+*.log
+npm-debug.log*
+
+# IDE
+.vscode/
+<<<<<<< HEAD
+<<<<<<< HEAD
+.idea/
+.DS_Store 
+=======
+.idea/ 
