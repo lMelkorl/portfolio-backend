@@ -1,6 +1,7 @@
 # Dependencies
 node_modules/
 dist/
+build/
 
 # Environment variables
 .env
@@ -17,9 +18,5 @@ npm-debug.log*
 
 # IDE
 .vscode/
-<<<<<<< HEAD
-<<<<<<< HEAD
 .idea/
-.DS_Store 
-=======
-.idea/ 
+.DS_Store
