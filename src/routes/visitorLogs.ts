@@ -131,4 +131,127 @@ router.post('/clear', authMiddleware, async (req, res) => {
   }
 });
 
+// Tip tanımlamaları ekleyelim
+interface Visit {
+  url: string;
+  timestamp: Date;
+  referrer: string;
+  duration?: number;
+  exitTime?: Date;
+}
+
+interface VisitorLog {
+  ipInfo: {
+    ip: string;
+    location?: {
+      country?: string;
+      city?: string;
+      region?: string;
+    };
+  };
+  visits: Visit[];
+  totalVisits: number;
+  firstVisit: Date;
+  lastVisit: Date;
+  browserInfo: {
+    name: string;
+    version: string;
+  };
+  osInfo: {
+    name: string;
+    version: string;
+    platform: string;
+  };
+  deviceInfo: {
+    type: string;
+    brand: string | null;
+    model: string | null;
+  };
+  screenInfo: {
+    width: number;
+    height: number;
+    colorDepth: number;
+    pixelRatio: number;
+  };
+}
+
+// Ziyaret süresini güncelle
+router.post('/update-duration', async (req, res) => {
+  try {
+    const { url, duration, exitTime, ipInfo } = req.body;
+    
+    // IP bilgisini request body'den al
+    if (!ipInfo || !ipInfo.ip) {
+      return res.status(400).json({ 
+        message: 'IP info is required',
+        received: ipInfo 
+      });
+    }
+
+    console.log('Update Duration Request:', {
+      url,
+      duration,
+      exitTime,
+      ipInfo
+    });
+
+    const visitorLogsRef = db.collection('visitor-logs');
+    
+    // IP'ye göre son log'u bul
+    const existingLogQuery = await visitorLogsRef
+      .where('ipInfo.ip', '==', ipInfo.ip)
+      .orderBy('lastVisit', 'desc')
+      .limit(1)
+      .get();
+
+    if (existingLogQuery.empty) {
+      console.log('No visitor log found for IP:', ipInfo.ip);
+      return res.status(404).json({ 
+        message: 'No visitor log found',
+        ip: ipInfo.ip 
+      });
+    }
+
+    const existingLog = existingLogQuery.docs[0];
+    const data = existingLog.data();
+    const visits = data.visits || [];
+
+    // Son ziyareti bul ve süreyi güncelle
+    const lastVisitIndex = visits.findIndex((v: any) => v.url === url);
+    
+    if (lastVisitIndex === -1) {
+      console.log('Visit not found for URL:', url);
+      return res.status(404).json({ 
+        message: 'Visit not found for URL',
+        url 
+      });
+    }
+
+    // Ziyaret süresini ve çıkış zamanını güncelle
+    visits[lastVisitIndex] = {
+      ...visits[lastVisitIndex],
+      duration: duration,
+      exitTime: exitTime
+    };
+
+    // Firestore'u güncelle
+    await existingLog.ref.update({ 
+      visits,
+      lastVisit: exitTime // Son ziyaret zamanını da güncelle
+    });
+
+    return res.json({ 
+      message: 'Visit duration updated successfully',
+      updatedVisit: visits[lastVisitIndex]
+    });
+
+  } catch (error) {
+    console.error('Error updating visit duration:', error);
+    return res.status(500).json({ 
+      message: 'Error updating visit duration',
+      error: error.message 
+    });
+  }
+});
+
 export default router; 
